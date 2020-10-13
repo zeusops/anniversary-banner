@@ -21,3 +21,30 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['-points', 'name']
+
+
+class BannerConfig(models.Model):
+    class Meta:
+        verbose_name_plural = "Banner config"
+
+    def __str__(self):
+        return "Main config"
+
+
+class BannerConfigEntry(models.Model):
+    config = models.ForeignKey(BannerConfig, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, default='')
+    x1 = models.IntegerField(default=-1)
+    y1 = models.IntegerField(default=-1)
+    x2 = models.IntegerField(default=-1)
+    y2 = models.IntegerField(default=-1)
+    size = models.IntegerField(default=-1)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Banner config entries"
