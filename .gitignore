@@ -2,4 +2,4 @@ venv
 __pycache__
 db.sqlite3
 banner/static
-banner/upload
+banner/media

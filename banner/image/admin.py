@@ -15,7 +15,7 @@ class TeamAdmin(admin.ModelAdmin):
         return obj.side.active
     # is_active.admin_order_field = 'is_active'
     is_active.boolean = True
-    is_active.short_description = 'Is active side'
+    is_active.short_description = "Team's side is active"
 
 
 @admin.register(Side)
