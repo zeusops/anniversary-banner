@@ -128,4 +128,4 @@ def banner(request):
     return response
 
 def index(request):
-    return HttpResponse("Hello there")
+    return HttpResponse('<html><head></head><body><img src="https://banner.zeusops.com/image/banner.jpg"></body></html>')
