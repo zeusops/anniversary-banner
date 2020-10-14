@@ -14,7 +14,7 @@ def _get_config(name):
 
 def _draw_images(images, target, debug=False):
     for name, filename in images:
-        image = Image.open(filename, 'r')
+        image = Image.open(filename, 'r').convert('RGBA')
         x, y, w, h, _ = _get_config(name)
         if w > 0 and h > 0:
             image = image.resize((w, h))
