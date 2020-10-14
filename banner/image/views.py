@@ -77,7 +77,7 @@ def _draw_leaderboard(target, debug=False):
         draw.text((715, 150 + i * 25), wins, fill=WHITE, font=font_teams)
         draw.text((770, 150 + i * 25), name, fill=colour, font=font_teams)
 
-def generate_banner(debug=False):
+def generate_banner(debug=False, rainbow=False):
     sides = Side.objects.filter(active=True)
     side_left = sides[0]
     side_right = sides[1]
@@ -88,8 +88,9 @@ def generate_banner(debug=False):
         ('logo_right', side_right.logo),
     ]
 
-    # bgcolour = (randint(0, 255), randint(0, 255), randint(0, 255))
     bgcolour = 'black'
+    if rainbow:
+        bgcolour = (randint(0, 255), randint(0, 255), randint(0, 255))
     banner = Image.new('RGB', (1000, 400), color = bgcolour)
     _draw_images(logos, banner, debug)
     _draw_points(banner, side_left, side_right, debug)
@@ -115,6 +116,7 @@ def banner(request):
     # team_points = request.GET.get('team_points', 3)
     # team_side = request.GET.get('team_side', colour_blufor)
     debug = request.GET.get('debug', 'false') == "true"
+    rainbow = 'rainbow' in request.GET
     response =  HttpResponse(content_type="image/jpeg")
     # teams = (
     #     (6, "Terry's 10heads", colour_redfor),
@@ -123,7 +125,7 @@ def banner(request):
     #     (3, "Yonkee donkey", colour_redfor),
     #     (team_points, team_name, team_side),
     # )
-    img = generate_banner(debug)
+    img = generate_banner(debug, rainbow)
     img.save(response, 'jpeg')
     return response
 
