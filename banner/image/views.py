@@ -31,7 +31,7 @@ def _draw_points(target, side_left, side_right, debug=False):
     # banner.paste(logo_left, (50, 240), mask=logo_left)
     # banner.paste(logo_right, (485, 240), mask=logo_right)
     # font_points = ImageFont.truetype('DejaVuSans-Bold.ttf', 80)
-    font_points = ImageFont.truetype('Typo Grotesk Bold Demo.otf', 80)
+    font_points = ImageFont.truetype('Typo Grotesk Bold Demo.otf', 55)
     draw = ImageDraw.Draw(target)
 
     logo_left = BannerConfigEntry.objects.get(name='logo_left')
