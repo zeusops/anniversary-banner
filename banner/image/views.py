@@ -115,7 +115,7 @@ def banner(request):
     # team_points = request.GET.get('team_points', 3)
     # team_side = request.GET.get('team_side', colour_blufor)
     debug = request.GET.get('debug', 'false') == "true"
-    response =  HttpResponse(content_type="image/png")
+    response =  HttpResponse(content_type="image/jpeg")
     # teams = (
     #     (6, "Terry's 10heads", colour_redfor),
     #     (4, "Monkey men", colour_blufor),
@@ -124,7 +124,7 @@ def banner(request):
     #     (team_points, team_name, team_side),
     # )
     img = generate_banner(debug)
-    img.save(response, 'png')
+    img.save(response, 'jpeg')
     return response
 
 def index(request):
