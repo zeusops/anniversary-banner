@@ -3,3 +3,4 @@ __pycache__
 db.sqlite3
 banner/static
 banner/media
+banner/banner/local_settings.py
