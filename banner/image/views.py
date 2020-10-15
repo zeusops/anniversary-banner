@@ -99,34 +99,16 @@ def generate_banner(debug=False, rainbow=False):
     return banner
 
 def banner(request):
-    # colour_blufor = 'DodgerBlue'
-    # colour_blufor = (0, 77, 153)
-    # colour_blufor = (45, 101, 153)
-    # colour_blufor = (50, 100, 165)
-    # # colour_redfor = (128, 0, 0)
-    # colour_redfor = (170, 0, 0)
-
-    # sides = Side.objects.filter(active=True)
-    # side_left = sides[0]
-    # side_right = sides[1]
-
-    # red_points = request.GET.get('red_points', 10)
-    # blue_points = request.GET.get('blue_points', 4)
-    # team_name = request.GET.get('team_name', "Old gang")
-    # team_points = request.GET.get('team_points', 3)
-    # team_side = request.GET.get('team_side', colour_blufor)
     debug = request.GET.get('debug', 'false') == "true"
     rainbow = 'rainbow' in request.GET
-    response =  HttpResponse(content_type="image/jpeg")
-    # teams = (
-    #     (6, "Terry's 10heads", colour_redfor),
-    #     (4, "Monkey men", colour_blufor),
-    #     (4, "Charlies", colour_redfor),
-    #     (3, "Yonkee donkey", colour_redfor),
-    #     (team_points, team_name, team_side),
-    # )
     img = generate_banner(debug, rainbow)
-    img.save(response, 'jpeg')
+    extension = request.path.split('.')[-1]
+    if extension == "jpg":
+        response =  HttpResponse(content_type="image/jpeg")
+        img.save(response, 'jpeg')
+    elif extension == "png":
+        response =  HttpResponse(content_type="image/png")
+        img.save(response, 'png')
     return response
 
 def index(request):
