@@ -1,3 +1,5 @@
+from functools import reduce
+
 from django.db import models
 
 from colorfield.fields import ColorField
@@ -5,10 +7,17 @@ from colorfield.fields import ColorField
 # Create your models here.
 class Side(models.Model):
     name = models.CharField(max_length=100, default='')
-    points = models.IntegerField(default=0)
     colour = ColorField(default='#00FF00')
     logo = models.ImageField(upload_to='upload', blank=True)
     active = models.BooleanField(default=True)
+
+    @property
+    def points(self):
+        teams = list(map(lambda team: team.points,
+                         Team.objects.filter(side=self)))
+        if teams:
+            return reduce(lambda first, second: first + second, teams)
+        return 0
 
     def __str__(self):
         return self.name
