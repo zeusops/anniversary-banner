@@ -1,12 +1,13 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.views.decorators.cache import cache_page
-from PIL import Image, ImageDraw, ImageFont
 from random import randint
 
-from .models import Side, Team, BannerConfigEntry
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.views.decorators.cache import cache_page
+from PIL import Image, ImageDraw, ImageFont
 
-TEAMS_LIMIT = 8
+from .models import BannerConfigEntry, Side, Team
+
+TEAMS_LIMIT = 9
 WHITE = (229, 229, 229)
 
 def _get_config(name):
@@ -25,13 +26,6 @@ def _draw_images(images, target, debug=False):
             draw.rectangle((x, y, x+image.width, y+image.height))
 
 def _draw_points(target, side_left, side_right, debug=False):
-    # logo = Image.open('images/logo_text_resize.png', 'r')
-    # logo_left = Image.open(side_left.logo, 'r')
-    # logo_right = Image.open(side_right.logo, 'r')
-    # banner.paste(logo, (x1, y1), mask=logo)
-    # banner.paste(logo_left, (50, 240), mask=logo_left)
-    # banner.paste(logo_right, (485, 240), mask=logo_right)
-    # font_points = ImageFont.truetype('DejaVuSans-Bold.ttf', 80)
     font_points = ImageFont.truetype('Typo Grotesk Bold Demo.otf', 55)
     draw = ImageDraw.Draw(target)
 
@@ -54,7 +48,6 @@ def _draw_points(target, side_left, side_right, debug=False):
             points_corner,
             (points_corner[0]+points_w, points_corner[1]+points_h)))
         draw.point(points_middle, fill='red')
-    # points_corner = points_middle
     draw.text(points_corner,
               points_text,
               font=font_points, align='center', fill=WHITE)
@@ -114,4 +107,4 @@ def banner(request):
     return response
 
 def index(request):
-    return HttpResponse('<html><head></head><body><img src="https://banner.zeusops.com/image/banner.jpg"></body></html>')
+    return HttpResponse('<html><head><meta http-equiv="refresh" content="60"></head><body><style>* { background: black; }</style><img src="https://banner.zeusops.com/image/banner.jpg"></body></html>')
