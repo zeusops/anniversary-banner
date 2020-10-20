@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.cache import cache_page
 from PIL import Image, ImageDraw, ImageFont
 from random import randint
 
@@ -98,6 +99,7 @@ def generate_banner(debug=False, rainbow=False):
 
     return banner
 
+@cache_page(60)
 def banner(request):
     debug = request.GET.get('debug', 'false') == "true"
     rainbow = 'rainbow' in request.GET
