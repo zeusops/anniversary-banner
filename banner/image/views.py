@@ -107,4 +107,4 @@ def banner(request):
     return response
 
 def index(request):
-    return HttpResponse('<html><head><meta http-equiv="refresh" content="60"></head><body><style>* { background: black; }</style><img src="https://banner.zeusops.com/image/banner.jpg"></body></html>')
+    return HttpResponse('<html><head><meta http-equiv="refresh" content="60"></head><body><style>* { background: black; }</style><img src="/image/banner.jpg"></body></html>')
