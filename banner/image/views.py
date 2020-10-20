@@ -26,7 +26,7 @@ def _draw_images(images, target, debug=False):
             draw.rectangle((x, y, x+image.width, y+image.height))
 
 def _draw_points(target, side_left, side_right, debug=False):
-    font_points = ImageFont.truetype('Typo Grotesk Bold Demo.otf', 55)
+    font_points = ImageFont.truetype('font.otf', 55)
     draw = ImageDraw.Draw(target)
 
     logo_left = BannerConfigEntry.objects.get(name='logo_left')
