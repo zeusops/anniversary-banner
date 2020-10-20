@@ -77,7 +77,7 @@ def generate_banner(debug=False, rainbow=False):
     side_right = sides[1]
 
     logos = [
-        ('logo_main', 'images/logo_text_resize.png'),
+        ('logo_main', 'media/image/logo_text_resize.png'),
         ('logo_left', side_left.logo),
         ('logo_right', side_right.logo),
     ]
